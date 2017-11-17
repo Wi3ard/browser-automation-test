@@ -43,22 +43,26 @@ signals:
 	// Private methods.
 	//
 private:
+	//! Clicks button for the currently loaded offer.
+	void ClickOfferButton();
 	//! Returns the number of elements with the given class name in the DOM.
 	template <typename Pred>
 	void GetElementCountByClassName(const QString className, Pred pred) const;
+	//! Returns the inner text of the first element with the given class name in the DOM.
+	template <typename Pred>
+	void GetInnerTextByClassName(const QString className, Pred pred) const;
 	//! State events handlers.
 	void HandleInitialStateEnter();
 	void HandleLoggedInStateEnter();
 	void HandleLoggedOutStateEnter();
 	void HandleLoggingInFinishedStateEnter();
 	void HandleLoggingInStateEnter();
+	void HandleOfferClickState();
 	void HandleOfferLoadState();
 	void HandleOfferLoadFinishedState();
-	void HandleScheduleOfferLoadState();
+	void HandleScheduleOfferClickState();
 	//! Initializes application states.
 	void InitStates();
-	//! Injects qwebchannel.js into the given page.
-	void InjectWebChannelJs(QWebEnginePage& page) const;
 	//! Waits until Angular application finishes initialization.
 	template <typename Pred>
 	void WaitUntilAngularInit(Pred pred, int periodMs = 1000);
@@ -85,6 +89,21 @@ void Controller::GetElementCountByClassName(const QString className, Pred pred) 
 			return;
 		}
 		pred(v.toInt());
+	});
+}
+
+template <typename Pred>
+void Controller::GetInnerTextByClassName(const QString className, Pred pred) const
+{
+	ui_.webView_->page()->runJavaScript(
+		QStringLiteral("document.getElementsByClassName(\"%1\")[0].innerText").arg(className),
+		[=](const QVariant& v)
+	{
+		if (!v.isValid()) {
+			pred("");
+			return;
+		}
+		pred(v.toString());
 	});
 }
 

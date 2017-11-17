@@ -37,5 +37,4 @@
 #include <QMessageBox>
 #include <QStateMachine>
 #include <QTimer>
-#include <QWebEnginePage>
 #include <QWebEngineView>
