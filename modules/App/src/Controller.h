@@ -2,6 +2,7 @@
 
 #include <QObject>
 #include <QStateMachine>
+#include <QWebEnginePage>
 
 namespace Ui {
 class MainWindow;
@@ -56,6 +57,8 @@ private:
 	void HandleScheduleOfferLoadState();
 	//! Initializes application states.
 	void InitStates();
+	//! Injects qwebchannel.js into the given page.
+	void InjectWebChannelJs(QWebEnginePage& page) const;
 	//! Waits until Angular application finishes initialization.
 	template <typename Pred>
 	void WaitUntilAngularInit(Pred pred, int periodMs = 1000);

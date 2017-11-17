@@ -2,10 +2,22 @@
 #include "Controller.h"
 #include "ui_MainWindow.h"
 
+#include <QWebChannel>
+#include <QWebEngineProfile>
+#include <QWebEngineScript>
+#include <QWebEngineScriptCollection>
+#include <QFile>
+#include <thread>
+
 Controller::Controller(Ui::MainWindow& ui)
 	: ui_(ui)
 {
 	InitStates();
+
+	// Register web channel to communicate from JS to C++ side.
+	QWebChannel* channel = new QWebChannel(ui_.webView_->page());
+	ui_.webView_->page()->setWebChannel(channel);
+	channel->registerObject(QStringLiteral("controller"), this);
 }
 
 void Controller::HandleInitialStateEnter()
@@ -30,6 +42,13 @@ void Controller::HandleLoggedOutStateEnter()
 		ui_.login_->setDisabled(false);
 		ui_.password_->setDisabled(false);
 		ui_.loginButton_->setDisabled(false);
+
+		InjectWebChannelJs(*ui_.webView_->page());
+		ui_.webView_->page()->runJavaScript(QStringLiteral(
+			"new QWebChannel(qt.webChannelTransport, function (channel) {"
+			"  var controller = channel.objects.controller;"
+			""
+			"});"));
 	});
 }
 
@@ -144,8 +163,11 @@ void Controller::InitStates()
 	connect(loggedInState, &QState::entered, [&]() {
 		HandleLoggedInStateEnter();
 	});
+	loggedInState->addTransition(ui_.offerId_, SIGNAL(editingFinished()), offerLoadState);
+/*
 	loggedInState->addTransition(ui_.clickNowButton_, SIGNAL(pressed()), offerLoadState);
 	loggedInState->addTransition(ui_.scheduleClickButton_, SIGNAL(pressed()), scheduleOfferLoadState);
+*/
 
 	// Offer load.
 	connect(offerLoadState, &QState::entered, [&]() {
@@ -176,6 +198,18 @@ void Controller::InitStates()
 	stateMachine_.addState(offerLoadFinishedState);
 
 	stateMachine_.setInitialState(initialState);
+}
+
+void Controller::InjectWebChannelJs(QWebEnginePage& page) const
+{
+	QFile file(":/qtwebchannel/qwebchannel.js");
+	if (!file.open(QIODevice::ReadOnly)) {
+		qDebug() << "Failed to inject qwebchannel.js: " << file.errorString();
+		return;
+	}
+
+	QString script = QString::fromUtf8(file.readAll());
+	page.runJavaScript(script);
 }
 
 void Controller::Start()
