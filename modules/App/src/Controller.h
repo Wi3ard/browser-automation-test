@@ -3,10 +3,7 @@
 #include <QObject>
 #include <QStateMachine>
 #include <QWebEnginePage>
-
-namespace Ui {
-class MainWindow;
-}
+#include "ui_MainWindow.h"
 
 class Controller
 	: public QObject

@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Check build directory.
+BUILD_DIR=../build/gcc-x64-release
+if [ ! -d $BUILD_DIR ]
+then
+	mkdir -p $BUILD_DIR
+fi
+pushd $BUILD_DIR
+
+# Run CMake.
+cmake \
+	-G"CodeBlocks - Unix Makefiles" \
+	"-DCMAKE_BUILD_TYPE:STRING=Release" \
+	"-DQT_ROOT:PATH=/opt/qt59" \
+	"-DCPACK_GENERATOR:STRING=DEB" \
+	../..
+
+# Exit
+echo "[*] Project generation succeeded!"
+popd

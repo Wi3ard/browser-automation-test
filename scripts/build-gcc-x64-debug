@@ -1,0 +1,15 @@
+#!/bin/bash
+
+./cmakegen-gcc-x64-debug
+
+BUILD_DIR=../build/gcc-x64-debug
+pushd $BUILD_DIR
+
+# Run build.
+echo "[*] Build is running..."
+cmake --build . --config Debug --target package
+
+# Exit
+echo "[*] Project build succeeded!"
+popd
+

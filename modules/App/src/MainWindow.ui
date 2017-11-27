@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>865</width>
-    <height>630</height>
+    <height>633</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -120,6 +120,22 @@
       </widget>
      </widget>
     </item>
+    <item row="0" column="1" rowspan="4">
+     <widget class="QWebEngineView" name="webView_" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>250</width>
+        <height>0</height>
+       </size>
+      </property>
+     </widget>
+    </item>
     <item row="1" column="0" rowspan="3">
      <widget class="QGroupBox" name="offerBox_">
       <property name="sizePolicy">
@@ -147,9 +163,9 @@
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>20</y>
-         <width>47</width>
-         <height>13</height>
+         <y>30</y>
+         <width>56</width>
+         <height>17</height>
         </rect>
        </property>
        <property name="text">
@@ -160,7 +176,7 @@
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>90</y>
+         <y>100</y>
          <width>296</width>
          <height>183</height>
         </rect>
@@ -170,7 +186,7 @@
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>70</y>
+         <y>80</y>
          <width>47</width>
          <height>13</height>
         </rect>
@@ -186,7 +202,7 @@
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>290</y>
+         <y>300</y>
          <width>47</width>
          <height>13</height>
         </rect>
@@ -202,7 +218,7 @@
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>310</y>
+         <y>320</y>
          <width>71</width>
          <height>20</height>
         </rect>
@@ -212,9 +228,9 @@
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>350</y>
+         <y>360</y>
          <width>80</width>
-         <height>23</height>
+         <height>25</height>
         </rect>
        </property>
        <property name="text">
@@ -225,9 +241,9 @@
        <property name="geometry">
         <rect>
          <x>110</x>
-         <y>350</y>
-         <width>80</width>
-         <height>23</height>
+         <y>360</y>
+         <width>106</width>
+         <height>25</height>
         </rect>
        </property>
        <property name="text">
@@ -238,7 +254,7 @@
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>40</y>
+         <y>50</y>
          <width>101</width>
          <height>22</height>
         </rect>
@@ -250,25 +266,9 @@
         <number>999999999</number>
        </property>
        <property name="value">
-        <number>51808</number>
+        <number>51512</number>
        </property>
       </widget>
-     </widget>
-    </item>
-    <item row="0" column="1" rowspan="4">
-     <widget class="QWebEngineView" name="webView_">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>250</width>
-        <height>0</height>
-       </size>
-      </property>
      </widget>
     </item>
    </layout>
@@ -279,7 +279,7 @@
      <x>0</x>
      <y>0</y>
      <width>865</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
