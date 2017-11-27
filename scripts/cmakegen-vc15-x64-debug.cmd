@@ -11,6 +11,7 @@ cmake ^
 	-G"Visual Studio 15 2017 Win64" ^
 	"-DCMAKE_CONFIGURATION_TYPES:STRING=Debug" ^
 	"-DQT_ROOT:PATH=%QT_ROOT%\msvc2017_64" ^
+	"-DCPACK_GENERATOR:STRING=NSIS" ^
 	../..
 if errorlevel 1 goto :error
 

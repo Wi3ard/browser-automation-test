@@ -11,6 +11,7 @@ cmake ^
 	-G"Visual Studio 14 2015 Win64" ^
 	"-DCMAKE_CONFIGURATION_TYPES:STRING=Release" ^
 	"-DQT_ROOT:PATH=%QT_ROOT%\msvc2015_64" ^
+	"-DCPACK_GENERATOR:STRING=NSIS" ^
 	../..
 if errorlevel 1 goto :error
 

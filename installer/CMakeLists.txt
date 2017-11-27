@@ -15,7 +15,6 @@ set(VERSION_REVISION "1")
 list(APPEND CPACK_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/nsis")
 
 # CPack configuration
-#set(CPACK_GENERATOR NSIS)
 set(CPACK_PACKAGE_NAME "wooniezie-robot")
 set(CPACK_PACKAGE_VENDOR "Avantize")
 set(CPACK_PACKAGE_CONTACT "a.kucher@avantize.com")
